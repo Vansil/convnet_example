@@ -1,0 +1,8 @@
+/.DS_Store
+/.vscode
+/__pycache__
+/best_model.pth
+/images
+/output.png
+/output2.png
+/responses.csv
