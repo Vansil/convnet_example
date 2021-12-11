@@ -1,3 +1,7 @@
+"""
+Classes to load the correlation data, create in train/test splits, and apply preprocessing.
+"""
+
 from torchvision.io import read_image
 from torch.utils.data import Dataset
 from torchvision.datasets.folder import pil_loader
@@ -29,6 +33,7 @@ class TrainTestSplitter(object):
 
 
 class CorrelationDataset(Dataset):
+    # Dataset for the correlation data
     def __init__(self, responses_file, img_dir, train_test_sampler, train=True, transform=None):
         # Select train or test samples from responses file
         df_data = pd.read_csv(responses_file, dtype={'id': 'O', 'corr': np.float32})
@@ -52,6 +57,8 @@ class CorrelationDataset(Dataset):
         return image, label
 
 class CorrelationTransform(object):
+    # Crops image to only include the graph, resizes it and probabilistically
+    # flips it if it is training data.
     def __init__(self, train, size=32, p_flip=.5):
         self.train = train
         self.size = size

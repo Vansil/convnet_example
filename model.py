@@ -1,3 +1,7 @@
+"""
+Simple convnet to predict correlation labels.
+"""
+
 import torch.nn as nn
 
 class CorrelationNet(nn.Module):
@@ -27,6 +31,6 @@ class CorrelationNet(nn.Module):
             nn.Linear(16, 1),
             nn.Tanh()
         )
-        
+
     def forward(self, x):
         return self.model(x)
